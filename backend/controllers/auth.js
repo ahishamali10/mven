@@ -1,14 +1,20 @@
 import {PrismaClient} from "@prisma/client";
 import logger from "../utils/logger.js";
 import jwt from 'jsonwebtoken'
+import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient()
 
 export const login = async (req, res) => {
     try {
         const user = await prisma.users.findFirstOrThrow({
-            where: {email: req.body.email, password: req.body.password}
+            where: {email: req.body.email}
         })
+
+        if (!bcrypt.compareSync(req.body.password,user.password)){
+            logger.error('error fetching data, db-err message: password not matched'    )
+            return res.status(500).send({message: 'error fetching data',user:user,hash:bcrypt.hashSync(req.body.password, 8), status: '500'})
+        }
 
         // authentication process
         let expiresIn = 86400 // 24 hours
@@ -39,7 +45,7 @@ export const register = async (req, res) => {
             data: {
                 email: req.body.email,
                 username: req.body.username,
-                password: req.body.password,
+                password: bcrypt.hashSync(req.body.password, 8),
             }
         })
         // send email

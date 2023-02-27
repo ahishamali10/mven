@@ -36,3 +36,11 @@ Argument password for data.password is missing.
 
 Note: Lines with + are required, lines with ? are optional.
 "
+error: Feb-27-2023 11:10:30: "	error fetching data, db-err message: No users found"
+error: Feb-27-2023 11:14:55: "	there was a problem in creating model, db-err message: Invalid salt version: Kv"
+error: Feb-27-2023 11:15:59: "	error fetching data, db-err message: No users found"
+error: Feb-27-2023 11:18:38: "	error fetching data, db-err message: password not matched"
+error: Feb-27-2023 11:24:13: "	error fetching data, db-err message: password not matched"
+error: Feb-27-2023 11:25:31: "	error fetching data, db-err message: password not matched"
+error: Feb-27-2023 11:26:54: "	error fetching data, db-err message: password not matched"
+error: Feb-27-2023 11:27:10: "	error fetching data, db-err message: password not matched"
