@@ -1,7 +1,7 @@
 import express from 'express'
 const router = express.Router()
+import * as authJwt from '../middlewares/authJwt.js'
 
-// const authJwt = require('../middlewares/user/authJwt')
 import * as controller from '../controllers/auth.js'
 
 router.use(function (req, res, next) {
@@ -9,7 +9,7 @@ router.use(function (req, res, next) {
   next()
 })
 
-// you can test your token with these URLs for authorization
+router.post('/check', [authJwt.verifyToken],controller.check)
 router.post('/login', controller.login)
 router.post('/register', controller.register)
 

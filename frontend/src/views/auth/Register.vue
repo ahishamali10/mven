@@ -33,6 +33,11 @@
                         <div class="text-blueGray-400 text-center mb-3 font-bold">
                             <small>Or sign up with credentials</small>
                         </div>
+                        <div v-if="errors.show" class="bg-red-700 p-2 rounded mb-1 text-white">
+                            <ul>
+                                <li v-for="err in errors.message">{{ err }}</li>
+                            </ul>
+                        </div>
                         <form @submit.prevent="handleRegister">
                             <div class="relative w-full mb-3">
                                 <label
@@ -137,7 +142,7 @@ export default {
             username: string().min(4).required(),
             email: string().email().required(),
             password: string().min(8).required(),
-            confirmPassword: string().min(8).required().oneOf([rf('password')]),
+            confirmPassword: string().min(8).required(),
         })
         const form = ref({
             username: '',
@@ -153,9 +158,18 @@ export default {
             message: []
         });
 
-        const handleRegister = async (e) => {
+        const handleRegister = async () => {
             isLoading.value = true
-            e.preventDefault()
+
+            if (form.value.password !== form.value.confirmPassword){
+                errors.value.show = true
+                errors.value.name = 'password confirm'
+                errors.value.message = ['passwords does not match']
+                isLoading.value = false
+                form.value.confirmPassword = ''
+                return;
+            }
+
             try {
                 data.value = await registerSchema.validate(form.value)
                 errors.value = {

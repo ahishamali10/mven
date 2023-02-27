@@ -151,9 +151,11 @@ export default {
                 errors.value.message = e.errors
             }
             let res = axios.post(general.baseURL + '/auth/login', {...data.value}).then(res => {
-                console.log('redirect to dashboard page')
+                console.log('redirect to dashboard page',res.data.token)
                 // redirect to dashboard page
                 isLoading.value = false
+                localStorage.setItem('jwt',res.data.token)
+                localStorage.setItem('userId',res.data.userId)
                 router.push({path: '/admin'})
             }).catch(err => {
                 console.log(err.response)

@@ -31,7 +31,7 @@
           </div>
           <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
             <card-stats
-              statSubtitle="SALES"
+              statSubtitle="Employees"
               statTitle="924"
               statArrow="down"
               statPercent="1.10"

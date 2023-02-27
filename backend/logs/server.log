@@ -1,0 +1,38 @@
+error: Feb-27-2023 10:33:37: "	there was a problem in creating model, db-err message: 
+Invalid `prisma.users.create()` invocation:
+
+{
+  data: {
++   email: String,
++   username: String,
++   password: String,
+?   remember_token?: String | null,
+?   last_login?: DateTime | null
+  }
+}
+
+Argument username for data.username is missing.
+Argument email for data.email is missing.
+Argument password for data.password is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+"
+error: Feb-27-2023 10:33:37: "	there was a problem in creating model, db-err message: 
+Invalid `prisma.users.create()` invocation:
+
+{
+  data: {
++   email: String,
++   username: String,
++   password: String,
+?   remember_token?: String | null,
+?   last_login?: DateTime | null
+  }
+}
+
+Argument username for data.username is missing.
+Argument email for data.email is missing.
+Argument password for data.password is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+"

@@ -27,7 +27,7 @@ export const login = async (req, res) => {
             }
         })
 
-        return res.status(200).send({message: 'successfully logged in', token: token})
+        return res.status(200).send({message: 'successfully logged in', token: token,userId:user.id})
     } catch (e) {
         logger.error('error fetching data, db-err message: ' + e.message)
         return res.status(500).send({message: 'error fetching data', status: '500'})
@@ -48,4 +48,8 @@ export const register = async (req, res) => {
         logger.error('there was a problem in creating model, db-err message: ' + e.message)
         return res.status(400).send({message: 'there was a problem in creating model', status: '400'})
     }
+}
+
+export const check = async (req, res) => {
+    return res.status(200).send('ok')
 }
